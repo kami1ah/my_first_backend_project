@@ -1,5 +1,6 @@
+require('dotenv').config()
 const app = require('./app') //express is assigned to app
-const port = 3005       
+const port = process.env.PORT       
 
 app.listen(port, () => {    
   console.log(`Example app listening on port ${port}`)
