@@ -1,14 +1,5 @@
 const fruits = require('../fruits.json')
 
-    // const fruit = fruits.find((fruit) => fruit.name.toLowerCase() == name)  // .find finds the first match item and checks against the input the user passed
-    
-    // if (fruit == undefined) {
-    //     res.status(404).send('The fruit does not exist')
-    // }
-    // else {
-    //     res.status(200).send(fruit)
-    // }
-
     //oop structure = Object-oriented programming. Skeleton/blueprint of the infomation of json file
 class Fruit {
     constructor(fruit) {
@@ -20,15 +11,12 @@ class Fruit {
         this.nutritions = fruit.nutritions
     }
 
-
     static showAll() {
         return fruits.map(q => new Fruit(q))
-
     }
 
     static show(name) {
         const fruit = fruits.find((fruit) => fruit.name.toLowerCase() == name)
-
         if (fruit) {
             return new Fruit(fruit)
         } 
@@ -37,20 +25,19 @@ class Fruit {
         }
     }
 
+
     static create(data) {
         const newFruit = data
-
         if (!data.name) {           //this is if a fruit is added but doesnt have a name 
             throw 'A fruit needs a name'
         }
-    
         const fruit = fruits.find((fruit) => fruit.name.toLowerCase() == data.name.toLowerCase())
 
         if(fruit) {
             throw 'The fruit already exist'
         }
         else {
-            newFruit['id'] = Math.max(...fruit.map(fruit => fruit.id)) + 1 //this prevenst conflicting id, ... seperates the list out into values , arrange them by therir id then add 1
+            newFruit['id'] = Math.max(...fruits.map(fruit => fruit.id)) + 1 //this prevenst conflicting id, ... seperates the list out into values , arrange them by therir id then add 1
             fruits.push(newFruit)     //this addes/pushes the new fruit into the array 
 
             return new Fruit(newFruit)      //this returns the new intsance of the 

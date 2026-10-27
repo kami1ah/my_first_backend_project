@@ -38,8 +38,8 @@ const show = async (req, res) => {
 }
 
 const create = async (req, res) => {
+    console.log(req.body)
     try {
-        console.log(req.body)
         const newFruit = await Fruit.create(req.body)   //req.body inputting information into the json file, the body of the json sSO the requesting is expecting something
         res.status(201).send(newFruit)
     } catch(err) {
